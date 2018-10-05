@@ -40,7 +40,7 @@ public class RecyAdapter extends RecyclerView.Adapter<RecyAdapter.MiViewHolder> 
         final Jobs job = jobs.get(position);
         miViewHolder.texts.setText(job.getTitle());
         String imgUrl = job.getThumbnail();
-        String vurl = job.getUrl();
+        final String vurl = job.getUrl();
         Glide.with(context)
                 .load(imgUrl)
                 .thumbnail(0.5f)
@@ -50,6 +50,7 @@ public class RecyAdapter extends RecyclerView.Adapter<RecyAdapter.MiViewHolder> 
             public void onClick(View view) {
                 Intent intent = new Intent(context,VideoActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("url",vurl);
                 context.startActivity(intent);
             }
         });
